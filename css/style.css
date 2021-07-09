@@ -1,0 +1,221 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: sans-serif;
+  font-size: 1rem;
+}
+.parent {
+  padding: 20px;
+  display: grid;
+  /* fr = fraction -> They essentially mean “portion of the remaining space” */
+  grid-template-columns: 50% 1fr 1fr;
+  /* column-gap: 20px;
+  row-gap: 20px; or you can do this: */
+  gap: 20px;
+}
+
+.item {
+  background-color: rgb(228, 228, 228);
+  padding: 20px;
+  font-size: 0.77rem;
+  line-height: 1.7;
+}
+
+/* If you want 1 cell to take 2 rows: */
+.item:nth-child(1) {
+  font-size: 1.1rem;
+  grid-row: span 2;
+  display: grid; /*a grid insed a grind allow to centering de inner content*/
+  align-content: center; /*To align our text in the center of the cell */
+}
+
+.item p {
+  margin: 0;
+}
+
+.exemple-banner {
+  max-width: 900px;
+  height: 300px;
+  background-color: rgb(222, 222, 255);
+  margin: 0 auto 20px auto;
+  display: grid;
+}
+/* If u just want to center a content of a element you can use this trick of display: grid (on the parent) and on the child using margin: auto to center it */
+.center-me {
+  margin: auto;
+  color: rgb(113, 113, 175);
+  font-size: 3rem;
+}
+
+.full-width-exemple {
+  display: grid;
+  /* The function minmax(a, b) defines a size range greater than or equal to min and less than or equal to max. -> minxmax(>=a and <=b) */
+  grid-template-columns: minmax(auto, 900px);
+  justify-content: center;
+  background-color: rgb(255, 211, 130);
+  color: rgb(112, 86, 38);
+  line-height: 1.7;
+  padding: 20px;
+}
+
+.photo-exemple {
+  display: grid;  
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+.photo-exemple img {
+  max-width: 100%;
+  display: block;
+  grid-column: 1;
+  grid-row: 1; 
+}
+
+.overlay-text {
+  align-self: end;
+  grid-column: 1;
+  grid-row: 1;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.308);
+  padding: 20px;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.overlay-text p{
+  margin 0;
+}
+
+/* repeat(a,b) => a = how manu times you want to repeat a value 
+b = what size you want to repeat, for exemple: 4,300px (300px four times)*/
+/* grid-tamplate-areas is another easy way of distributing your content all over your layout: */
+
+@media screen and (min-width: 850px) {
+  .layout{
+ display: grid;
+ grid-template-columns: 1fr 2.5fr;
+ grid-template-areas: 
+  "header header"
+  "sidebar main"
+  "sidebar footer";
+}
+
+}
+
+.header {
+  background-color: rgb(113, 113, 175);
+  color: #fff;
+  padding: 20px;
+  grid-area: header;
+}
+
+.sidebar {
+  background-color: #ddd;
+  font-size: .8rem;
+  color: #999;
+  padding: 20px;
+  grid-area: sidebar;
+}
+
+.main {
+  padding: 20px;
+  line-height: 1.7;
+  grid-area: main;
+}
+
+.footer {
+  background-color: rgb(77, 77, 77);
+  color: #fff;
+  padding: 15px;
+  font-size: 0.75rem;
+  grid-area: footer;
+  align-self: end;
+}
+
+.responsive-example{
+  display: grid;
+  /* this code below will resize your grid to fit the windows size */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: 20px auto;
+}
+
+.responsive-item{
+  background-color: rgb(204, 247, 230);
+  padding: 20px;
+  color: rgb(90, 145, 123);
+  font-size: 0.77rem;
+  line-height: 1.7;
+  overflow: auto;
+}
+
+.art-banner {
+  background-color: rgb(0, 80, 112);
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 20px 1fr 1fr 1fr 20px;
+  grid-template-rows: 20px 1fr 1fr 1fr 20px;
+}
+
+.art-banner-bg {
+  opacity: 0.15;
+  background: url("https://images.unsplash.com/photo-1574492543172-b37ab0de758c?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyMzY4Nzg2MA&ixlib=rb-1.2.1&q=85")
+    center center no-repeat;
+  background-size: cover;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+}
+
+.banner-text {
+  color: #fff;
+  font-size: 8vw;
+  font-weight: bold;
+  grid-column: 2 / span 2;
+  grid-row: 3;
+  align-self: center;
+  justify-self: center;
+}
+
+.badge {
+  display: grid;
+  background-color: rgb(255, 41, 123);
+  color: #fff;
+  font-size: 2.5vw;
+  font-weight: bold;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  transform: rotate(15deg);
+  grid-column: 4;
+  grid-row: 3/ 4;
+  align-self: center;
+  justify-self: center;
+  /* align-content: center;
+  justify-content: center; */
+}
+
+.badge p {
+  margin: auto;
+}
+
+.art-banner::before {
+  content: "";
+  opacity: 0.85;
+  border-top: 5px solid rgb(255, 41, 123);
+  border-right: 5px solid rgb(255, 41, 123);
+  grid-column: 4;
+  grid-row: 2 / span 2;
+}
+
+.art-banner::after {
+  content: "";
+  opacity: 0.85;
+  border-bottom: 5px solid rgb(255, 41, 123);
+  border-left: 5px solid rgb(255, 41, 123);
+  grid-column: 2;
+  grid-row: 3 / span 2 ;
+}
